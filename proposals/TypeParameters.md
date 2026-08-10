@@ -20,12 +20,12 @@ When this happens in order to infer the type of T a set of constrains are built
 
 
 
-| Expected | Actural | 
+| Expected | Actual | 
 | -------- | --------|
 | T        | String  |
 
 
-Then the solution is simple `T` needs to be of Type `String` then it will substitue the result with this solution. `T <= String` 
+Then the solution is simple `T` needs to be of Type `String` then it will substitute the result with this solution. `T <= String` 
 
 This is a very simple example but it shows the basics of how the type parameter inference works.
 
@@ -47,14 +47,14 @@ Expecting Type: `"2"`, but got: `"a"`.
 	|---- From: AnonymousFunction($: `"2"`) -> `"2"`
 ```
 
-And why is this? Is beacuse from `defaultValue("2")` it will infere a `(
+And why is this? It is because from `defaultValue("2")` it will infer a `(
 "2") -> "2" ` That is not exactly what we want. 
 
-We have been hacking the TypeParamerter solver to be able to express different behaviours, but we will continue hitting limitations.
+We have been hacking the TypeParameter solver to be able to express different behaviours, but we will continue hitting limitations.
 
 ## Solution
 
-The solution is quite simple, add a sintax for expressing the type binding on a function call 
+The solution is quite simple, add a syntax for expressing the type binding on a function call 
 
 functionExpression<ParamBinding*>?(Params*)
 
@@ -75,7 +75,7 @@ This will start working as now `defaultValue<String>` will replace T with String
 ### All or nothing
 
 
-We are only going to allow to either specify all the type parameters or non but not to parcially apply.
+We are only going to allow to either specify all the type parameters or non but not to partially apply.
 
 So for example
 
@@ -97,5 +97,5 @@ We need to validate that the specified substitution is valid
 fun test<T <: String, Q>(a: T, b: Q): {a: T, b: Q} = ???
 ```
 
-In this case `test<"Mariano", Number>("Mariano", 32)` is valid as `"Mariano" < String` but `test<Number, Number>(123, 32)` should complain as `Number` is not a valid subsitution for `T` as `Number < String` is *false*
+In this case `test<"Mariano", Number>("Mariano", 32)` is valid as `"Mariano" < String` but `test<Number, Number>(123, 32)` should complain as `Number` is not a valid substitution for `T` as `Number < String` is *false*
 

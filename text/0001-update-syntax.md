@@ -13,14 +13,14 @@ This feature adds an easy way to update single values in nested data structures 
 # Motivation
 [motivation]: #motivation
 
-This feature should be added because currently an end-user needs to know about functional recursion and probably pattern matching should they want to update a single field in a data structure without touching any of the other ones. This is a problem because DataWeave currently makes a simple, commonly used pattern (updating a single value in a nested data structure) and puts it out of reach of your average integration programmer than is not familiar with functional programming (FP).
+This feature should be added because currently an end-user needs to know about functional recursion and probably pattern matching should they want to update a single field in a data structure without touching any of the other ones. This is a problem because DataWeave currently makes a simple, commonly used pattern (updating a single value in a nested data structure) and puts it out of reach of your average integration programmer that is not familiar with functional programming (FP).
 
 The expected outcome is that DataWeave users will no longer need to know to use recursion and pattern matching when they want to update a single value, they will just need to know the `update` syntax.
 
 # Documentation
 [documentation]: #documentation
 
-As this feature proposes a new syntax, and not just new functions, documentation must adequately explain what is valid and what is invalid syntax for `update`. That being said, the leap from knowing nothing about `update`, to being able to effectively use it should be a small one. This syntax reuses a couple pieces of functuionality that DataWeave users are already familiar with, pattern matching and the selector syntax. Instead of `case is ...` this syntax uses `case at ...` followed by the afformentioned selector syntax. Here are some examples:
+As this feature proposes a new syntax, and not just new functions, documentation must adequately explain what is valid and what is invalid syntax for `update`. That being said, the leap from knowing nothing about `update`, to being able to effectively use it should be a small one. This syntax reuses a couple pieces of functionality that DataWeave users are already familiar with, pattern matching and the selector syntax. Instead of `case is ...` this syntax uses `case at ...` followed by the aforementioned selector syntax. Here are some examples:
 
 ## Updating with literals
 
@@ -92,7 +92,7 @@ null update { case at .foo -> "hello" }
 
 
 ## Updating repeated keys
-It's necessary to support repeated keys on the same Object in DataWeave. Because of this, an edge case exists where DataWeave cannot intepret what's between `case` and `->` exactly as selectors. Imagine the following example:
+It's necessary to support repeated keys on the same Object in DataWeave. Because of this, an edge case exists where DataWeave cannot interpret what's between `case` and `->` exactly as selectors. Imagine the following example:
 
 ```dwl
 {a: [1,2,3], a: [4,5,6]} update {
@@ -102,7 +102,7 @@ It's necessary to support repeated keys on the same Object in DataWeave. Because
 
 If the user views `.*a` as functioning exactly like the multi-value selector, then the lambda would be called once with `[[1,2,3],[4,5,6]]`. This creates an ambiguity. Given that this Array could then be transformed into anything, it becomes impossible to determine how the modifications to the Array should be applied back to the original data. Does DataWeave update the first `a`, the second `a`, or both?
 
-The solution for this requires that the "selector" syntax used in `update` functional slightly differently when matching repeated keys. The lambda on the RHS of `->` is called twice, because `.*a` matched on two values. When the lambda is called the first time, the result is applied to the first `a`, when it is called the second time, the result is applied to the second `a`. Updating individual values requires the use of a guard.
+The solution for this requires that the "selector" syntax used in `update` functions slightly differently when matching repeated keys. The lambda on the RHS of `->` is called twice, because `.*a` matched on two values. When the lambda is called the first time, the result is applied to the first `a`, when it is called the second time, the result is applied to the second `a`. Updating individual values requires the use of a guard.
 
 ### Updating all repeated keys with the same lambda
 
@@ -222,7 +222,7 @@ do {
 # Drawbacks
 [drawbacks]: #drawbacks
 
-This feature adds additional syntax to the language which is, generally speaking, something not taken lightly with programming languages. This feature could conceivably be added as a few additional functions, but the ergonomics of it would not be as nice (see Rational, Alternatives). Personally, I think there's a much greater drawback in not having `update` syntax as a part of the language.
+This feature adds additional syntax to the language which is, generally speaking, something not taken lightly with programming languages. This feature could conceivably be added as a few additional functions, but the ergonomics of it would not be as nice (see Rationale, Alternatives). Personally, I think there's a much greater drawback in not having `update` syntax as a part of the language.
 
 # Rationale, Alternatives
 [rationale]: #rationale

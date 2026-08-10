@@ -1,6 +1,6 @@
 # Evolve Input Directive
 
-Input directives have caused us problems specially in mule land where all inputs are implicits 
+Input directives have caused us problems especially in mule land where all inputs are implicits 
 and reader configuration are taken from the values mime types. What happen is that people use them in 
 places like the playground to specify the reader properties and then they copy paste into mule and it doesn't work.
 
@@ -10,9 +10,9 @@ I've been thinking on alternatives to this.
 
 This is a valid option but I think there is value in input directives. One is that if you want to create a re-usable mapping,
 declaring your inputs and their types helps consumers understand about the mapping how it needs to be called. Also there are things
-like `@StreamCapable` that are usefull verifications that only works if they are present.
+like `@StreamCapable` that are useful verifications that only works if they are present.
 
-## Option 1: Deprecate The Format dependendent part of Input Directives
+## Option 2: Deprecate The Format dependent part of Input Directives
 
 If we take the input directive we can identify two parts
 
@@ -21,7 +21,7 @@ If we take the input directive we can identify two parts
 input <name><:typeDefinition>? <mimeType|formatId> <readerProperties*>
 ```
 
-Form this pseudo grammar we dan spot two parts the variable definition section 
+From this pseudo grammar we can spot two parts the variable definition section 
 
 ```
 <annotations>*

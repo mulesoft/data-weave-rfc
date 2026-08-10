@@ -23,7 +23,7 @@ engage in such discussions.
 
 If you'd like the subject to be discussed before jumping into a formal RFC, you can create an [issue](https://github.com/mulesoft-labs/data-weave-rfc/issues/new) explaining the idea or the problem you'd like to solve. A corresponding [proposal](https://github.com/mulesoft-labs/data-weave-rfc/tree/master/proposals) can be merged simultaneously to later expedite the RFC process. Once you are ready to move forward, the proper RFC can be created.
 
-To get a substaintial change accepted into the DataWeave language, you must first get the corresponding RFC merged into this repository as a markdown file. At this point the RFC is "active" and may be implemented and eventually included in DataWeave. 
+To get a substantial change accepted into the DataWeave language, you must first get the corresponding RFC merged into this repository as a markdown file. At this point the RFC is "active" and may be implemented and eventually included in DataWeave. 
 
 The process is as follows:
 

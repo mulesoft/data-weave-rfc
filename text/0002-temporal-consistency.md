@@ -6,7 +6,7 @@
 # Summary
 [summary]: #summary
 
-Currently, DW can be a bit inconsistent when dealing with temporal objects like `Date`, `DateTime`, `LocalDateTime`, `Time`, `LocalTime`, and `Period`. I'll refer to `Date`, `DateTime`, `LocaldateTime`, `Time`, and `LocalTime` as "temporal instances" throughout the RFC, as they identify a specific point in time. This RFC is a proposal on how that can be addressed.
+Currently, DW can be a bit inconsistent when dealing with temporal objects like `Date`, `DateTime`, `LocalDateTime`, `Time`, `LocalTime`, and `Period`. I'll refer to `Date`, `DateTime`, `LocalDateTime`, `Time`, and `LocalTime` as "temporal instances" throughout the RFC, as they identify a specific point in time. This RFC is a proposal on how that can be addressed.
 
 # Motivation
 [motivation]: #motivation
@@ -130,7 +130,7 @@ In the event that `decomposeTemporal` is passed the wrong type, it should throw 
 
 The documentation could be a bit more verbose about the difference between temporal instances and `Periods`. It doesn't say that `Period` represents a length of time. It also doesn't disclose that the actual length of a `Period` is unknown until it is applied to a temporal instance. If the `decomposeTemporal` function is included in the language, it should be stated in the documentation that the keys returned in the object mean something conceptually different when passing a temporal instance vs a `Period`. In the case of a temporal instance, the keys represent where the instance falls on a time line, including some additional information. In the case of `Period`s, the keys represent how many of each of the durations will be ultimately applied to the temporal instance.
 
-In addition to this, the documentation should contain how to interpolate `Period`s. This is currently contained in examples, but I think it would get greater visability on the documentation for the `Period` type:
+In addition to this, the documentation should contain how to interpolate `Period`s. This is currently contained in examples, but I think it would get greater visibility on the documentation for the `Period` type:
 
 `Period`s can be interpolated by creating a period `String` and casting it to a `Period`:
 
